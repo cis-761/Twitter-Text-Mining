@@ -33,14 +33,21 @@ madison = [-89.53555556, 42.98972222, -89.27611111, 43.13583333]
 locations_combined = topeka + indianapolis + springfield + des_moines + lansing + \
     st_paul + jefferson_city + lincoln + bismarck + columbus + pierre + madison
 
+tokens = []
+f = open("secret.txt", "r")
+lines = list(f)
+for x in lines:
+    tokens.append(x.strip())
+    
+f.close()
+
 # Variables that contains the user credentials to access Twitter API
-access_token = "48405262-ELwvRcN2mE8GQ0KU8vFYBZILaDfC4JU31ekvTd3Ar"
-access_token_secret = "9v1M7fztosnIzNoiFzjRSSKtIdI6ZGrQv5zDXtwAyTLqI"
-consumer_key = "oXBkKcVFC9kZramR85woAPae3"
-consumer_secret = "x9bJ0I79HOLlOuy3aRU2bC2dopiAIJUV8Q3gohJwgECrbA3pZZ"
+access_token = tokens[0]
+access_token_secret = tokens[1]
+consumer_key = tokens[2]
+consumer_secret = tokens[3]
 
 # This is a basic listener that just prints received tweets to stdout.
-
 
 class StdOutListener(StreamListener):
 
