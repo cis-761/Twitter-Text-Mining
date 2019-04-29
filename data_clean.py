@@ -1,15 +1,9 @@
-# JSON -> CSV WITH DATA THAT CORRESPONDS WITH OUR DATABASE. EASIEST IS TO HAVE ONE CSV PER TABLE.
-
-
-
 import json
 import pandas as pd
-import csv
-
 
 tweets_data_path = 'data.txt'
 
-tweets_data = []
+tweets_data = []    
 tweets_file = open(tweets_data_path, "r")
 for line in tweets_file:
     try:
@@ -18,22 +12,16 @@ for line in tweets_file:
     except:
         continue
 
+tweets = pd.DataFrame()    
 
-# print ( len(tweets_data) )
+tweets['text'] = list(map(lambda tweet: tweet['text'], tweets_data))
+tweets['location'] = list(map(lambda tweet: tweet['coordinates'], tweets_data))
+tweets['favorite'] = list(map(lambda tweet: tweet['favorited'], tweets_data))
+tweets['date'] = list(map(lambda tweet: tweet['created_at'], tweets_data))
 
-
-tweets = pd.DataFrame()
-
-tweets['text'] = map(lambda tweet: tweet['text'], tweets_data)
-tweets['location'] = map(lambda tweet: tweet['location'], tweets_data)
-tweets['date'] = map(lambda tweet: tweet['created_at'], tweets_data)
-
-
-
-#for key, val in tweets.items():
-    #print (list(map(key, val)))
+user = pd.DataFrame()
 
 
 
 
-tweets.to_csv(r'/home/riddy/Downloads/Twitter-Text-Mining-master/tweets.csv', index = None, header = True)
+tweets.to_csv('test.csv', index = None, header = True)
