@@ -42,7 +42,7 @@ users['screen_name'] = list(map(lambda user: user['screen_name'], user_data))
 users['geo_enabled'] = list(map(lambda user: user['geo_enabled'], user_data))
 users['verified'] = list(map(lambda user: user['verified'], user_data))
 
-user_frame = users.drop('user', axis=1)
+users_frame = users.drop('user', axis=1)
 
 print(users_frame.columns)
 print(users_frame.shape)
